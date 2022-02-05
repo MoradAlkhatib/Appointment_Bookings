@@ -1,4 +1,19 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Quintessential&display=swap');
+
+body {
+  font-family: 'Quintessential', cursive;
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
