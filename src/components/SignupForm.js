@@ -36,6 +36,7 @@ export default function SignupForm() {
 
   return (
     <div>
+      <h1 className='text-lg text-center text-zinc-700 m-2'> Choose if you want to register as buyer or seller!</h1>
       <form className="flex justify-between border-4 border-black">
         <button className={activeBuyer} onClick={(e) => buyer(e)}>
           Buyer
@@ -44,6 +45,7 @@ export default function SignupForm() {
           Seller
         </button>
       </form>
+      
       {user == "buyer" && <BuyerSignUp />}
       {user == "seller" && <SellerSignUp />}
     </div>

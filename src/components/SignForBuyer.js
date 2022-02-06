@@ -29,14 +29,15 @@ export default function SignForBuyer() {
     } else {
       axios({
         method: "post",
-        url: "http://localhost:5000/api/register",
+        url: `${process.env.REACT_APP_BK_URL}/api/register`,
         data: user,
       })
         .then((res) => {
-          navigate('/login')
+          
           setAlertColor("bg-green-400 text-center text-white text-xl");
           setAlertData(`Success Sign Up You Are Welcome ${user.name}.`);
           setAlert(true);
+          navigate('/login')
         })
         .catch((err) => {
           setAlertColor("bg-blue-400 text-center text-white text-xl");

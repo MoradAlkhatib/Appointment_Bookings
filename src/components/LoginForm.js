@@ -5,7 +5,6 @@ import { MdLockOutline } from "react-icons/md";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { Container, Alert } from "react-bootstrap";
-import Footer from "./Footer";
 import bcrypt from "bcryptjs";
 
 export default function LoginForm(props) {
@@ -23,7 +22,7 @@ export default function LoginForm(props) {
     let body = { email: email, password: password };
 
     axios
-      .post("http://localhost:5000/api/login", body)
+      .post(`http://localhost:5000/api/login`, body)
       .then((res) => {
         let objToken = jwt_decode(res.data.token);
 
