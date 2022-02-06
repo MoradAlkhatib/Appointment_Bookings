@@ -36,7 +36,7 @@ export default function BuyerPage(props) {
       });
       setSellers(arr);
 
-      console.log(sellers + "2");
+  
     });
 
   };

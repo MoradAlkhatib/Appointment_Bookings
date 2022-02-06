@@ -4,13 +4,12 @@ import { FaRegEnvelope } from "react-icons/fa";
 import { MdLockOutline } from "react-icons/md";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { Container, Alert } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import bcrypt from "bcryptjs";
 
 export default function LoginForm(props) {
   const [isSeller, setIsSeller] = useState(false);
   const [alert, setAlert] = useState(false);
-  const [logged, setLogged] = useState(false);
   let navigate = useNavigate();
   const salt = bcrypt.genSaltSync(10);
 
@@ -26,14 +25,12 @@ export default function LoginForm(props) {
       .then((res) => {
         let objToken = jwt_decode(res.data.token);
 
-        localStorage.setItem("user", JSON.stringify({...body,...objToken}));
+        localStorage.setItem("user", JSON.stringify({ ...body, ...objToken }));
         props.userData(objToken, body);
-        // console.log(body);
-        // console.log(objToken.isSeller);
-        // console.log(jwt_decode(res.data.token));
+
         setIsSeller(objToken.isSeller);
         setAlert(false);
-        console.log(isSeller);
+
         navigate("/");
       })
       .catch((err) => {
@@ -106,16 +103,11 @@ export default function LoginForm(props) {
                 >
                   Log In
                 </button>
-
-                {/* <Link href="/Login">
-<div className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-teal-700">Go Log In</div>
-</Link> */}
               </div>
-              {/*Sign up */}
             </div>
           </main>
         </div>
       </form>
-      </div>
+    </div>
   );
 }

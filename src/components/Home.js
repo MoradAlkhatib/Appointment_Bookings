@@ -1,4 +1,4 @@
-import React, { useEffect ,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BuyerPage from "./BuyerPage";
@@ -10,7 +10,7 @@ export default function Home(props) {
   useEffect(() => {
     // to login from data that coming from local storage.
     let checkLogin = localStorage.getItem("user");
-    console.log(props.dataFromLogin);
+
     if (checkLogin) {
       // checking if there data in the local storage so if there that mean the user already logged in.
       checkLogin = JSON.parse(checkLogin);
@@ -26,8 +26,6 @@ export default function Home(props) {
       navigate("/login");
     }
   }, [props.dataFromLogin]);
-
- 
 
   return (
     <div>

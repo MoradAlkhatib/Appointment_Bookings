@@ -11,28 +11,31 @@ export default function SignForBuyer() {
   const [alertColor, setAlertColor] = useState("");
   const navigate = useNavigate()
   const signUp = (e) => {
+    // function to allow user sign up as buyer.
     e.preventDefault();
     let passwordC = e.target.passwordC.value;
     let user = {
       name: e.target.name.value,
       email: e.target.email.value,
       password: e.target.password.value,
-
       image: "not Seller",
       service: "not Seller",
       isSeller: false,
     };
     if (user.password !== passwordC) {
+      // check if the password and config password is matched
       setAlertColor("bg-red-600 text-center text-white text-xl");
       setAlertData("Password and config password Not match.");
       setAlert(true);
     } else {
+      // if the passwords matched then register him.
       axios({
         method: "post",
-        url: `${process.env.REACT_APP_BK_URL}/api/register`,
+        url: `http://localhost:5000/api/register`,
         data: user,
       })
         .then((res) => {
+          // registration Success
           
           setAlertColor("bg-green-400 text-center text-white text-xl");
           setAlertData(`Success Sign Up You Are Welcome ${user.name}.`);
@@ -40,6 +43,7 @@ export default function SignForBuyer() {
           navigate('/login')
         })
         .catch((err) => {
+          // registration failed
           setAlertColor("bg-blue-400 text-center text-white text-xl");
           setAlertData("A user with that username already exists.");
           setAlert(true);
@@ -48,8 +52,9 @@ export default function SignForBuyer() {
   };
   return (
     <div id="buyerSignUp">
+       {/* Alert to let user know what happen for registration success or failed*/}
       {alert && <Alert className={alertColor}>{alertData}</Alert>}
-
+        {/* Sign up form for buyer*/}
       <form className="bg-gray-200 p-2" onSubmit={(e) => signUp(e)}>
         <div className="flex flex-col items-center justify-center h-full p-8  bg-gray-200">
           <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">

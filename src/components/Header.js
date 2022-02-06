@@ -4,9 +4,9 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Header(props) {
-  console.log(props.dataFromLogin);
-  
+ 
   const logout = ()=>{
+    // function when user logout to make every things clearly for login another time.
     localStorage.setItem('user','')
     props.dataFromLogin = {}
     

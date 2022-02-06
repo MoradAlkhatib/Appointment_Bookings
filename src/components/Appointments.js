@@ -13,8 +13,6 @@ export default function Appointments(props) {
   const [time, setTime] = useState("");
   const [day, setDay] = useState("");
   const buyerData = JSON.parse(localStorage.getItem("user"));
-  console.log(buyerData);
-  console.log(props.sellerData);
 
   // initial appointments for one week.
   const days = [];
@@ -79,10 +77,7 @@ export default function Appointments(props) {
     axios
       .post(`http://localhost:5000/api/appointment/create`, body)
       .then((res) => {
-        console.log(res.data);
-        console.log("Appointments Success");
         localStorage.setItem("appointment", JSON.stringify(res.data));
-
         setAddedBooking(true);
       })
       .catch((err) => {});

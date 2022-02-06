@@ -13,7 +13,7 @@ export default function SignForSeller() {
   const navigate = useNavigate();
 
   const signUp = (e) => {
-    // function for register a new user.
+    // function for register a new Seller.
     e.preventDefault();
     let passwordC = e.target.passwordC.value;
     let user = {
@@ -39,12 +39,14 @@ export default function SignForSeller() {
         data: user,
       })
         .then((res) => {
+          // registration Success
           navigate("/login");
           setAlertColor("bg-green-400 text-center text-white text-xl");
           setAlertData(`Success Sign Up You Are Welcome ${user.name}.`);
           setAlert(true);
         })
         .catch((err) => {
+          // registration Failed
           setAlertColor("bg-blue-400 text-center text-white text-xl");
           setAlertData("A user with that email already exists.");
           setAlert(true);
@@ -53,8 +55,9 @@ export default function SignForSeller() {
   };
   return (
     <div id="buyerSignUp">
+      {/* Alert to let user know what happen for registration success or failed*/}
       {alert && <Alert className={alertColor}>{alertData}</Alert>}
-
+     {/* form for registration seller*/}
       <form
         onSubmit={(e) => signUp(e)}
         enctype="multipart/form-data"

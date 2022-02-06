@@ -3,24 +3,18 @@ import axios from "axios";
 import { Table, Button } from "react-bootstrap";
 export default function SellerPage(props) {
   const [allAppointments, setAllAppointments] = useState([]);
-  const [idAppointment, setIdAppointment] = useState("");
 
   useEffect(() => {
     // use effect to get all seller appointments that reserved from buyer.
     let body = { whoReceived: JSON.parse(localStorage.getItem("user")).email };
-    console.log(body);
+
     axios({
       method: "get",
       url: `http://localhost:5000/api/appointment/appointments`,
       data: JSON.parse(localStorage.getItem("user")).email,
-    })
-      .then((res) => {
-        console.log(res.data);
-        setAllAppointments(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    }).then((res) => {
+      setAllAppointments(res.data);
+    });
   }, [""]);
 
   const cancelBooking = (id) => {
@@ -36,7 +30,7 @@ export default function SellerPage(props) {
       underProcess: false,
     };
     axios
-      .put(`http://localhost:5000/api/appointment/update/?=${id}` , body)
+      .put(`http://localhost:5000/api/appointment/update/?=${id}`, body)
       .then((res) => {});
   };
 
@@ -62,7 +56,10 @@ export default function SellerPage(props) {
               <td>{item.time}</td>
               <td>
                 {" "}
-                <Button variant="success" onClick={acceptAppointment}></Button>{" "}
+                <Button
+                  variant="success"
+                  onClick={acceptAppointment}
+                ></Button>{" "}
               </td>
               <td>
                 {" "}
